@@ -1,0 +1,1006 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Node-patterns by bomb1e</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-dark.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/bomb1e/node-patterns">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/bomb1e/node-patterns/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/bomb1e/node-patterns/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Node-patterns</h1>
+          <p>Node Patterns: From Callbacks to Observer</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/bomb1e">bomb1e</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <p>footer: © NodeProgram.com, 2016
+slidenumbers: true</p>
+
+<h1>
+<a id="node-patterns" class="anchor" href="#node-patterns" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Node Patterns</h1>
+
+<h2>
+<a id="from-callbacks-to-observer" class="anchor" href="#from-callbacks-to-observer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>From Callbacks to Observer</h2>
+
+<hr>
+
+<h2>
+<a id="the-one-true-javascript-exception-handler-pattern" class="anchor" href="#the-one-true-javascript-exception-handler-pattern" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>The one true #JavaScript exception handler pattern</h2>
+
+<p><img src="images/full-stackoverflow.png" alt="inline"></p>
+
+<hr>
+
+<h2>
+<a id="the-one-true-node-exception-handler-pattern" class="anchor" href="#the-one-true-node-exception-handler-pattern" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>The one true Node exception handler pattern</h2>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c1">process</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>uncaughtException<span class="pl-pds">'</span></span>,
+  <span class="pl-smi">e</span> <span class="pl-k">=&gt;</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>opn<span class="pl-pds">'</span></span>)(<span class="pl-s"><span class="pl-pds">`</span>http://stackoverflow.com/search?q=[node.js ]+<span class="pl-s1"><span class="pl-pse">${</span><span class="pl-smi">e</span>.<span class="pl-smi">message</span><span class="pl-pse">}</span></span><span class="pl-pds">`</span></span>)
+)</pre></div>
+
+<hr>
+
+<h1>
+<a id="why-turn-off-your-im-and-care" class="anchor" href="#why-turn-off-your-im-and-care" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Why Turn off Your IM and Care?</h1>
+
+<ol>
+<li>You want to write and organize code better</li>
+<li>You want to become a go-to Node person in your team</li>
+<li>You want to understand Node things a bit deeper</li>
+</ol>
+
+<hr>
+
+<h1>
+<a id="slides-page_facing_up" class="anchor" href="#slides-page_facing_up" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Slides <g-emoji alias="page_facing_up" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4c4.png" ios-version="6.0">📄</g-emoji>
+</h1>
+
+<p><a href="https://github.com/azat-co/node-patterns">https://github.com/azat-co/node-patterns</a></p>
+
+<pre><code>git clone https://github.com/azat-co/node-patterns
+</code></pre>
+
+<hr>
+
+<h1>
+<a id="about-presenter" class="anchor" href="#about-presenter" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>About Presenter</h1>
+
+<p>Azat Mardan</p>
+
+<p><img src="images/azat.jpeg" alt="inline"></p>
+
+<p>Twitter: @azat_co
+Email: <a href="mailto:hi@azat.co">hi@azat.co</a>
+Blog: webapplog.com</p>
+
+<hr>
+
+<h1>
+<a id="about-presenter-1" class="anchor" href="#about-presenter-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>About Presenter</h1>
+
+<ul>
+<li>Work: Technology Fellow at Capital One</li>
+<li>Experience: FDIC, NIH, DocuSign, HackReactor and Storify</li>
+<li>Books: Practical Node.js, Pro Express.js, Express.js API and 8 others</li>
+<li>Teach: NodeProgram.com</li>
+</ul>
+
+<hr>
+
+<p><img src="images/azats-books-covers.png" alt="inline"></p>
+
+<hr>
+
+<h1>
+<a id="node-basics" class="anchor" href="#node-basics" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Node Basics</h1>
+
+<ul>
+<li>JavaScript, but not "==="</li>
+<li>Asynchronous + Event Driven</li>
+<li>Non-Blocking I/O</li>
+</ul>
+
+<hr>
+
+<h1>
+<a id="javascript-unamused" class="anchor" href="#javascript-unamused" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>JavaScript? <g-emoji alias="unamused" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f612.png" ios-version="6.0">😒</g-emoji>
+</h1>
+
+<ul>
+<li>Async code is hard</li>
+<li>Code complexity grows exponentially</li>
+<li>Good code organization is important</li>
+</ul>
+
+<p>^So JavaScript can be tough</p>
+
+<hr>
+
+<h1>
+<a id="problem" class="anchor" href="#problem" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Problem</h1>
+
+<p>How to schedule something in the future?</p>
+
+<hr>
+
+<h1>
+<a id="callbacks-all-the-way" class="anchor" href="#callbacks-all-the-way" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Callbacks All the Way!</h1>
+
+<p>Functions are First-Class Citizens</p>
+
+<hr>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> <span class="pl-en">t</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(){<span class="pl-k">...</span>}
+<span class="pl-c1">setTimeout</span>(t, <span class="pl-c1">1000</span>)</pre></div>
+
+<p>t is a callback</p>
+
+<hr>
+
+<h1>
+<a id="callback-convention" class="anchor" href="#callback-convention" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Callback Convention</h1>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> fs <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>fs<span class="pl-pds">'</span></span>)
+<span class="pl-k">var</span> <span class="pl-en">callback</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">error</span>, <span class="pl-smi">data</span>){<span class="pl-k">...</span>}
+<span class="pl-smi">fs</span>.<span class="pl-en">readFile</span>(<span class="pl-s"><span class="pl-pds">'</span>data.csv<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>utf-8<span class="pl-pds">'</span></span>, callback)</pre></div>
+
+<hr>
+
+<h1>
+<a id="conventions" class="anchor" href="#conventions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Conventions</h1>
+
+<ul>
+<li>
+<code>error</code> 1st argument, null if everything is okay</li>
+<li>
+<code>data</code> is the second argument</li>
+<li>
+<code>callback</code> is the last argument</li>
+</ul>
+
+<hr>
+
+<h1>
+<a id="note" class="anchor" href="#note" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Note</h1>
+
+<p>Naming doesn't matter but order matters.</p>
+
+<p>Node.js won't enforce the arguments.</p>
+
+<p>Convention is not a guarantee. It's just a style. — Read documentation or source code.</p>
+
+<hr>
+
+<h1>
+<a id="problem-1" class="anchor" href="#problem-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Problem</h1>
+
+<p>How to ensure the right sequence? Control flow <g-emoji alias="confused" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f615.png" ios-version="6.0">😕</g-emoji></p>
+
+<hr>
+
+<h1>
+<a id="example" class="anchor" href="#example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example</h1>
+
+<p>HTTP requests to:</p>
+
+<ol>
+<li>Get an auth token</li>
+<li>Fetch data</li>
+<li>PUT an update</li>
+</ol>
+
+<p>They must be executed in a certain order.</p>
+
+<hr>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">...</span> <span class="pl-c">// callback is defined, callOne, callTwo, and callThree are defined</span>
+<span class="pl-en">callOne</span>({<span class="pl-k">...</span>}, <span class="pl-k">function</span>(<span class="pl-smi">error</span>, <span class="pl-smi">data1</span>) {
+    <span class="pl-k">if</span> (error) <span class="pl-k">return</span> <span class="pl-en">callback</span>(error, <span class="pl-c1">null</span>)
+    <span class="pl-c">// work to parse data1 to get auth token</span>
+    <span class="pl-c">// fetch the data from the API</span>
+    <span class="pl-en">callTwo</span>(data1, <span class="pl-k">function</span>(<span class="pl-smi">error</span>, <span class="pl-smi">data2</span>) {
+        <span class="pl-k">if</span> (error) <span class="pl-k">return</span> <span class="pl-en">callback</span>(error, <span class="pl-c1">null</span>)
+        <span class="pl-c">// data2 is the response, transform it and make PUT call</span>
+        <span class="pl-en">callThree</span>(data2, <span class="pl-k">function</span>(<span class="pl-smi">error</span>, <span class="pl-smi">data3</span>) {
+            <span class="pl-c">//</span>
+            <span class="pl-k">if</span> (error) <span class="pl-k">return</span> <span class="pl-en">callback</span>(error, <span class="pl-c1">null</span>)
+            <span class="pl-c">// parse the response</span>
+            <span class="pl-en">callback</span>(<span class="pl-c1">null</span>, data3)
+        })
+    })
+})</pre></div>
+
+<hr>
+
+<h1>
+<a id="welcome-to-callback-hell" class="anchor" href="#welcome-to-callback-hell" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Welcome to callback hell</h1>
+
+<hr>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">fs</span>.<span class="pl-en">readdir</span>(source, <span class="pl-k">function</span> (<span class="pl-smi">err</span>, <span class="pl-smi">files</span>) {
+  <span class="pl-k">if</span> (err) {
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>Error finding files: <span class="pl-pds">'</span></span> <span class="pl-k">+</span> err)
+  } <span class="pl-k">else</span> {
+    <span class="pl-smi">files</span>.<span class="pl-c1">forEach</span>(<span class="pl-k">function</span> (<span class="pl-smi">filename</span>, <span class="pl-smi">fileIndex</span>) {
+      <span class="pl-en">console</span>.<span class="pl-c1">log</span>(filename)
+      <span class="pl-en">gm</span>(source <span class="pl-k">+</span> filename).<span class="pl-c1">size</span>(<span class="pl-k">function</span> (<span class="pl-smi">err</span>, <span class="pl-smi">values</span>) {
+        <span class="pl-k">if</span> (err) {
+          <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>Error identifying file size: <span class="pl-pds">'</span></span> <span class="pl-k">+</span> err)
+        } <span class="pl-k">else</span> {
+          <span class="pl-en">console</span>.<span class="pl-c1">log</span>(filename <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span> : <span class="pl-pds">'</span></span> <span class="pl-k">+</span> values)
+          aspect <span class="pl-k">=</span> (<span class="pl-smi">values</span>.<span class="pl-c1">width</span> <span class="pl-k">/</span> <span class="pl-smi">values</span>.<span class="pl-c1">height</span>)
+          <span class="pl-smi">widths</span>.<span class="pl-c1">forEach</span>(<span class="pl-k">function</span> (<span class="pl-smi">width</span>, <span class="pl-smi">widthIndex</span>) {
+            height <span class="pl-k">=</span> <span class="pl-c1">Math</span>.<span class="pl-c1">round</span>(width <span class="pl-k">/</span> aspect)
+            <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>resizing <span class="pl-pds">'</span></span> <span class="pl-k">+</span> filename <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span>to <span class="pl-pds">'</span></span> <span class="pl-k">+</span> height <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span>x<span class="pl-pds">'</span></span> <span class="pl-k">+</span> height)
+            <span class="pl-v">this</span>.<span class="pl-c1">resize</span>(width, height).<span class="pl-c1">write</span>(dest <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span>w<span class="pl-pds">'</span></span> <span class="pl-k">+</span> width <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span>_<span class="pl-pds">'</span></span> <span class="pl-k">+</span> filename, <span class="pl-k">function</span>(<span class="pl-smi">err</span>) {
+              <span class="pl-k">if</span> (err) <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>Error writing file: <span class="pl-pds">'</span></span> <span class="pl-k">+</span> err)
+            })
+          }.<span class="pl-en">bind</span>(<span class="pl-v">this</span>))
+        }
+      })
+    })
+  }
+}</pre></div>
+
+<hr>
+
+<h1>
+<a id="callback-hell" class="anchor" href="#callback-hell" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Callback Hell</h1>
+
+<ul>
+<li>Hard to read</li>
+<li>Hard to modify/maintain/enhance</li>
+<li>Easy for devs to make bugs</li>
+<li>Closing parens - <g-emoji alias="imp" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f47f.png" ios-version="6.0">👿</g-emoji>
+</li>
+</ul>
+
+<h3>
+<a id="callbackhellcom" class="anchor" href="#callbackhellcom" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>callbackhell.com</h3>
+
+<hr>
+
+<h1>
+<a id="solutions" class="anchor" href="#solutions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Solutions</h1>
+
+<ul>
+<li>Abstract into named functions (hoisted or variables)</li>
+<li>Use obververs</li>
+<li>Use advanced libraries and techniques</li>
+</ul>
+
+<hr>
+
+<h1>
+<a id="named-functions" class="anchor" href="#named-functions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Named Functions</h1>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">callOne</span>({<span class="pl-k">...</span>}, processResponse1)
+
+<span class="pl-k">function</span> <span class="pl-en">processResponse1</span>(<span class="pl-smi">error</span>, <span class="pl-smi">data1</span>) {
+  <span class="pl-en">callTwo</span>(data1, processResponse2)
+}
+
+<span class="pl-k">function</span> <span class="pl-en">processResponse2</span>(<span class="pl-smi">error</span>, <span class="pl-smi">data2</span>) {
+  <span class="pl-en">callThere</span>(data2, processResponse3)
+}
+
+<span class="pl-k">function</span> <span class="pl-en">processResponse3</span>(<span class="pl-smi">error</span>, <span class="pl-smi">data1</span>) {
+  <span class="pl-k">...</span>
+}</pre></div>
+
+<hr>
+
+<h1>
+<a id="modular-functions" class="anchor" href="#modular-functions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Modular Functions</h1>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> processResponse1 <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>./response1.js<span class="pl-pds">'</span></span>)
+<span class="pl-en">callOne</span>({<span class="pl-k">...</span>}, processResponse1)</pre></div>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// response1.js</span>
+<span class="pl-k">var</span> processResponse2 <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>./response2.js<span class="pl-pds">'</span></span>)
+<span class="pl-c1">module</span>.<span class="pl-en">exports</span> <span class="pl-k">=</span> <span class="pl-k">function</span> <span class="pl-en">processResponse1</span>(<span class="pl-smi">error</span>, <span class="pl-smi">data1</span>) {
+  <span class="pl-en">callTwo</span>(data1, processResponse2)
+}</pre></div>
+
+<hr>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// response2.js</span>
+<span class="pl-k">var</span> processResponse3 <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>./response3.js<span class="pl-pds">'</span></span>)
+<span class="pl-c1">module</span>.<span class="pl-en">exports</span> <span class="pl-k">=</span> <span class="pl-k">function</span> <span class="pl-en">processResponse2</span>(<span class="pl-smi">error</span>, <span class="pl-smi">data2</span>) {
+  <span class="pl-en">callThere</span>(data2, processResponse3)
+}</pre></div>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// response3.js</span>
+<span class="pl-c1">module</span>.<span class="pl-en">exports</span> <span class="pl-k">=</span> <span class="pl-k">function</span> <span class="pl-en">processResponse3</span>(<span class="pl-smi">error</span>, <span class="pl-smi">data3</span>) {
+  <span class="pl-k">...</span>
+}</pre></div>
+
+<hr>
+
+<h1>
+<a id="problem-2" class="anchor" href="#problem-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Problem</h1>
+
+<p>How to modularize code properly?</p>
+
+<hr>
+
+<ul>
+<li><code>module.exports = {...}</code></li>
+<li><code>module.exports.obj = {...}</code></li>
+<li><code>exports.obj = {...}</code></li>
+</ul>
+
+<p>Note: <code>exports = {...}</code> is anti-pattern.</p>
+
+<hr>
+
+<h1>
+<a id="problem-3" class="anchor" href="#problem-3" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Problem</h1>
+
+<p>How to modularize dynamic code or where to initialize?</p>
+
+<hr>
+
+<h1>
+<a id="solution" class="anchor" href="#solution" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Solution</h1>
+
+<ul>
+<li><code>module.exports = function(options) {...}</code></li>
+<li><code>module.exports.func = function(options) {...}</code></li>
+<li><code>exports.func = function(options) {...}</code></li>
+</ul>
+
+<hr>
+
+<h1>
+<a id="import" class="anchor" href="#import" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Import</h1>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// code A</span>
+<span class="pl-c1">module</span>.<span class="pl-en">exports</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">options</span>){
+  <span class="pl-c">// code B</span>
+}</pre></div>
+
+<p>When you <code>require</code>, code A is run and code B is not.
+Code A is run only once, no matter how many times you <code>require</code>.
+You need to invoke the object to run code B.</p>
+
+<hr>
+
+<h1>
+<a id="demo" class="anchor" href="#demo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Demo</h1>
+
+<pre><code>node import-main
+</code></pre>
+
+<hr>
+
+<h1>
+<a id="importing-folders--plugin-pattern" class="anchor" href="#importing-folders--plugin-pattern" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Importing Folders / Plugin Pattern</h1>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// main.js</span>
+<span class="pl-k">var</span> routes <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>./routes<span class="pl-pds">'</span></span>)</pre></div>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// routes/index.js</span>
+<span class="pl-c1">module</span>.<span class="pl-smi">exports</span> <span class="pl-k">=</span> {
+  users<span class="pl-k">:</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>./users.js<span class="pl-pds">'</span></span>),
+  accounts<span class="pl-k">:</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>./accounts.js<span class="pl-pds">'</span></span>)
+  <span class="pl-k">...</span>
+}</pre></div>
+
+<hr>
+
+<h1>
+<a id="singletons" class="anchor" href="#singletons" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Singletons</h1>
+
+<ul>
+<li>
+<code>require</code>: modules are cached</li>
+</ul>
+
+<hr>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// module.js</span>
+<span class="pl-k">var</span> a <span class="pl-k">=</span> <span class="pl-c1">1</span> <span class="pl-c">// Private</span>
+<span class="pl-c1">module</span>.<span class="pl-smi">exports</span> <span class="pl-k">=</span> {
+  b<span class="pl-k">:</span> <span class="pl-c1">2</span> <span class="pl-c">// Public</span>
+}</pre></div>
+
+<hr>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// program.js</span>
+<span class="pl-k">var</span> m <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>./module<span class="pl-pds">'</span></span>)
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-smi">m</span>.<span class="pl-smi">a</span>) <span class="pl-c">// undefined</span>
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-smi">m</span>.<span class="pl-smi">b</span>) <span class="pl-c">// 2</span>
+<span class="pl-smi">m</span>.<span class="pl-smi">b</span> <span class="pl-k">++</span>
+<span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>./main<span class="pl-pds">'</span></span>)</pre></div>
+
+<hr>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// main.js</span>
+<span class="pl-k">var</span> m <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>./module<span class="pl-pds">'</span></span>)
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-smi">m</span>.<span class="pl-smi">b</span>) <span class="pl-c">// 3</span></pre></div>
+
+<hr>
+
+<h1>
+<a id="demo-1" class="anchor" href="#demo-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Demo</h1>
+
+<pre><code>node main.js
+node program.js
+</code></pre>
+
+<hr>
+
+<h1>
+<a id="problem-4" class="anchor" href="#problem-4" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Problem</h1>
+
+<p>Modules are cached on based on their resolved filename.</p>
+
+<p>Filename will break the caching</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> m <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>./MODULE<span class="pl-pds">'</span></span>)
+<span class="pl-k">var</span> m <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>./module<span class="pl-pds">'</span></span>)</pre></div>
+
+<p>Or different paths</p>
+
+<hr>
+
+<h1>
+<a id="solution-1" class="anchor" href="#solution-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Solution</h1>
+
+<p><code>global</code></p>
+
+<hr>
+
+<p><code>global.name</code></p>
+
+<p>or</p>
+
+<p><code>GLOBAL.name</code></p>
+
+<hr>
+
+<div class="highlight highlight-source-js"><pre>_log <span class="pl-k">=</span> <span class="pl-c1">global</span>.<span class="pl-smi">console</span>.<span class="pl-smi">log</span>
+<span class="pl-c1">global</span>.<span class="pl-smi">console</span>.<span class="pl-en">log</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(){
+  <span class="pl-k">var</span> args <span class="pl-k">=</span> <span class="pl-v">arguments</span>
+  args[<span class="pl-c1">0</span>] <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-cce">\033</span>[31m<span class="pl-pds">'</span></span> <span class="pl-k">+</span>args[<span class="pl-c1">0</span>] <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-cce">\x</span>1b[0m<span class="pl-pds">'</span></span>
+  <span class="pl-k">return</span> <span class="pl-smi">_log</span>.<span class="pl-c1">apply</span>(<span class="pl-c1">null</span>, args)
+}</pre></div>
+
+<pre><code>require('./logs.js')
+</code></pre>
+
+<hr>
+
+<h1>
+<a id="color-logs" class="anchor" href="#color-logs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Color Logs</h1>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c1">global</span>.<span class="pl-smi">error</span> <span class="pl-k">=</span> <span class="pl-c1">global</span>.<span class="pl-smi">console</span>.<span class="pl-en">error</span> <span class="pl-k">=</span> <span class="pl-smi">msg</span> <span class="pl-k">=&gt;</span>
+  <span class="pl-en">console</span>.<span class="pl-c1">log</span>( <span class="pl-s"><span class="pl-pds">'</span><span class="pl-cce">\x</span>1b[31m<span class="pl-cce">\x</span>1b[1mError:<span class="pl-cce">\x</span>1b[22m <span class="pl-cce">\x</span>1b[93m<span class="pl-pds">'</span></span> <span class="pl-k">+</span> msg <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-cce">\x</span>1b[0m<span class="pl-pds">'</span></span> )
+<span class="pl-c1">global</span>.<span class="pl-smi">info</span> <span class="pl-k">=</span> <span class="pl-c1">global</span>.<span class="pl-smi">console</span>.<span class="pl-en">info</span> <span class="pl-k">=</span> <span class="pl-smi">msg</span> <span class="pl-k">=&gt;</span>
+  <span class="pl-en">console</span>.<span class="pl-c1">log</span>( <span class="pl-s"><span class="pl-pds">'</span><span class="pl-cce">\x</span>1b[31m<span class="pl-cce">\x</span>1b[36mInfo:<span class="pl-cce">\x</span>1b[22m <span class="pl-cce">\x</span>1b[93m<span class="pl-cce">\x</span>1b[0m<span class="pl-pds">'</span></span> <span class="pl-k">+</span> msg )
+<span class="pl-c1">global</span>.<span class="pl-smi">log</span> <span class="pl-k">=</span> <span class="pl-en">console</span>.<span class="pl-smi">log</span></pre></div>
+
+<p><img src="images/color-logs.png" alt="200% inline"></p>
+
+<hr>
+
+<p>global is powerful... anti-pattern</p>
+
+<p>similar <code>window.jQuery = jQuery</code></p>
+
+<p>use it sparringly</p>
+
+<p>^with a lot of power comes a lot of responsibility</p>
+
+<hr>
+
+<h1>
+<a id="problem-how-to-organize-your-modular-code-into-classes" class="anchor" href="#problem-how-to-organize-your-modular-code-into-classes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Problem: How to organize your modular code into classes?</h1>
+
+<ul>
+<li>ES5 Classes are too complex (new, prototype, this)</li>
+<li>ES6 Classes don't allow define property and other <a href="https://www.dropbox.com/s/9liftwj2g8jikjk/Screenshot%202016-06-20%2011.48.12.png?dl=0">issues</a>
+</li>
+</ul>
+
+<hr>
+
+<p><img src="images/es6.png" alt="inline"></p>
+
+<hr>
+
+<h1>
+<a id="sidenote-prototypes" class="anchor" href="#sidenote-prototypes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sidenote: Prototypes</h1>
+
+<p>Objects inherit from other objects</p>
+
+<p>Functions are objects too.</p>
+
+<hr>
+
+<h1>
+<a id="solution-2" class="anchor" href="#solution-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Solution</h1>
+
+<p>Function factory for objects</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c1">module</span>.<span class="pl-en">exports</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">options</span>) {
+  <span class="pl-c">// initialize</span>
+  <span class="pl-k">return</span> {
+    <span class="pl-en">getUsers</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {<span class="pl-k">...</span>},
+    <span class="pl-en">findUserById</span><span class="pl-k">:</span> <span class="pl-k">function</span>(){<span class="pl-k">...</span>},
+    limit<span class="pl-k">:</span> <span class="pl-smi">options</span>.<span class="pl-smi">limit</span> <span class="pl-k">||</span> <span class="pl-c1">10</span>,
+    <span class="pl-c">// ...</span>
+  }
+}</pre></div>
+
+<hr>
+
+<h1>
+<a id="solution-2" class="anchor" href="#solution-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Solution 2</h1>
+
+<p><code>require('util').inherits(child, parent)</code></p>
+
+<hr>
+
+<h1>
+<a id="problem-5" class="anchor" href="#problem-5" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Problem</h1>
+
+<p>Enhance functionality "on the fly"</p>
+
+<hr>
+
+<h1>
+<a id="decorator-enhances-an-object" class="anchor" href="#decorator-enhances-an-object" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Decorator: Enhances an object</h1>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">let</span> <span class="pl-en">userModel</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">options</span> <span class="pl-k">=</span> {}) {
+ <span class="pl-k">return</span> {
+   <span class="pl-en">getUsers</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {},
+   <span class="pl-en">findUserById</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {},
+   limit<span class="pl-k">:</span> <span class="pl-smi">options</span>.<span class="pl-smi">limit</span> <span class="pl-k">||</span> <span class="pl-c1">10</span>
+ }
+}
+<span class="pl-k">let</span> user <span class="pl-k">=</span> <span class="pl-en">userModel</span>()
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-smi">user</span>.<span class="pl-smi">limit</span>)
+<span class="pl-k">let</span> <span class="pl-en">adminModel</span> <span class="pl-k">=</span> (<span class="pl-smi">userModel</span>) <span class="pl-k">=&gt;</span> {
+  <span class="pl-smi">userModel</span>.<span class="pl-smi">limit</span> <span class="pl-k">+=</span> <span class="pl-c1">20</span>
+  <span class="pl-smi">userModel</span>.<span class="pl-en">removeUser</span> <span class="pl-k">=</span> () <span class="pl-k">=&gt;</span> {}
+  <span class="pl-smi">userModel</span>.<span class="pl-en">addUser</span> <span class="pl-k">=</span> () <span class="pl-k">=&gt;</span> {}
+  <span class="pl-k">return</span> userModel
+}
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">adminModel</span>(user).<span class="pl-smi">limit</span>)</pre></div>
+
+<p>// 10 30</p>
+
+<hr>
+
+<h1>
+<a id="problem-6" class="anchor" href="#problem-6" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Problem</h1>
+
+<p>How to enhance classes defined wit prototypal inheritance?</p>
+
+<hr>
+
+<p>Prototype Decorator: Enhance global object</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c1">Object</span>.<span class="pl-c1">prototype</span>.<span class="pl-en">toPrettyJSON</span> <span class="pl-k">=</span> <span class="pl-k">function</span>() {
+  <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-v">this</span>)
+  <span class="pl-k">return</span> <span class="pl-c1">JSON</span>.<span class="pl-en">stringify</span>(<span class="pl-v">this</span>, <span class="pl-c1">null</span>, <span class="pl-c1">2</span>)
+}
+<span class="pl-k">let</span> obj <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Object</span>({a<span class="pl-k">:</span> <span class="pl-c1">1</span>})
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-smi">obj</span>.<span class="pl-en">toPrettyJSON</span>())</pre></div>
+
+<p>Should: <a href="https://github.com/shouldjs/should.js">https://github.com/shouldjs/should.js</a></p>
+
+<hr>
+
+<h1>
+<a id="problem-7" class="anchor" href="#problem-7" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Problem</h1>
+
+<p>Non-blocking I/O can be blocked <g-emoji alias="cry" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f622.png" ios-version="6.0">😢</g-emoji></p>
+
+<hr>
+
+<h2>
+<a id="have-you-ever-seen-this-code" class="anchor" href="#have-you-ever-seen-this-code" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Have you ever seen this code?</h2>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c1">setTimeout</span>(<span class="pl-k">function</span> <span class="pl-en">timeout</span>() {
+  <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>Hello Node<span class="pl-pds">'</span></span>)
+}, <span class="pl-c1">0</span>)</pre></div>
+
+<hr>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// setimmediate.js</span>
+<span class="pl-en">setImmediate</span>(<span class="pl-k">function</span> <span class="pl-en">A</span>() {
+  <span class="pl-en">setImmediate</span>(<span class="pl-k">function</span> <span class="pl-en">B</span>() {
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>Step 1<span class="pl-pds">'</span></span>)
+  })
+  <span class="pl-en">setImmediate</span>(<span class="pl-k">function</span> <span class="pl-en">C</span>() {
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>Step 2<span class="pl-pds">'</span></span>)
+    <span class="pl-en">setImmediate</span>(<span class="pl-k">function</span> <span class="pl-en">F</span>() { <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>Step 3<span class="pl-pds">'</span></span>) })
+    <span class="pl-en">setImmediate</span>(<span class="pl-k">function</span> <span class="pl-en">G</span>() { <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>Step 4<span class="pl-pds">'</span></span>) })
+  })
+})
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>Step 0<span class="pl-pds">'</span></span>)
+<span class="pl-c1">setTimeout</span>(<span class="pl-k">function</span> <span class="pl-en">timeout</span>() {
+  <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>Timeout!<span class="pl-pds">'</span></span>)
+}, <span class="pl-c1">0</span>)
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>Step 0.5<span class="pl-pds">'</span></span>)</pre></div>
+
+<p>// Step 0, Step 0.5, Timeout!, Step 1, Step 2, Step 3, Step 4</p>
+
+<p>^// Step 0, Step 0.5, Step 1, Step 2, Timeout!, Step 3, Step 4</p>
+
+<p>^setTimeout is on the next iteration of the event loop
+^setImmediate is also, after I/O and before timers (official docs). setImmediate allows you to distribute computation over many turns of the event loop while ensuring that I/O doesn't get starved
+^setTimeout is slower</p>
+
+<hr>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c1">process</span>.<span class="pl-en">nextTick</span>(<span class="pl-k">function</span> <span class="pl-en">A</span>() {
+  <span class="pl-c1">process</span>.<span class="pl-en">nextTick</span>(<span class="pl-k">function</span> <span class="pl-en">B</span>() {
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>Step 1<span class="pl-pds">'</span></span>)
+  })
+  <span class="pl-c1">process</span>.<span class="pl-en">nextTick</span>(<span class="pl-k">function</span> <span class="pl-en">C</span>() {
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>Step 2<span class="pl-pds">'</span></span>)
+    <span class="pl-c1">process</span>.<span class="pl-en">nextTick</span>(<span class="pl-k">function</span> <span class="pl-en">F</span>() { <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>Step 3<span class="pl-pds">'</span></span>) })
+    <span class="pl-c1">process</span>.<span class="pl-en">nextTick</span>(<span class="pl-k">function</span> <span class="pl-en">G</span>() { <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>Step 4<span class="pl-pds">'</span></span>) })
+  })
+})
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>Step 0<span class="pl-pds">'</span></span>)
+<span class="pl-c1">setTimeout</span>(<span class="pl-k">function</span> <span class="pl-en">timeout</span>() {
+  <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>Timeout!<span class="pl-pds">'</span></span>)
+}, <span class="pl-c1">0</span>)
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>Step 0.5<span class="pl-pds">'</span></span>)</pre></div>
+
+<p>// Step 0, Step 0.5, Step 1, Step 2, Step 3, Step 4, Timeout!</p>
+
+<p>^nextTick happens before I/O callbacks. So in a case where you're trying to break up a long running, CPU-bound job using recursion, you would now want to use setImmediate rather than process.nextTick to queue the next iteration as otherwise any I/O event callbacks wouldn't get the chance to run between iterations.</p>
+
+<hr>
+
+<p><img src="images/immediate-tick.png" alt="inline"></p>
+
+<hr>
+
+<h1>
+<a id="problem-8" class="anchor" href="#problem-8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Problem</h1>
+
+<p>Insure continuity</p>
+
+<hr>
+
+<h2>
+<a id="nodejs-middleware-pattern" class="anchor" href="#nodejs-middleware-pattern" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Node.js Middleware Pattern</h2>
+
+<p>Middleware pattern is a series of processing units connected together, where the output of one unit is the input for the next one. In Node.js, this often means a series of functions in the form:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">function</span>(<span class="pl-smi">args</span>, <span class="pl-smi">next</span>) {
+  <span class="pl-c">// ... Run some code</span>
+  <span class="pl-en">next</span>(output) <span class="pl-c">// Error or real output</span>
+}</pre></div>
+
+<hr>
+
+<h2>
+<a id="express-example" class="anchor" href="#express-example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Express Example</h2>
+
+<p>Request is coming from a client and response is sent back to the client.</p>
+
+<pre><code>request-&gt;middleware1-&gt;middleware2-&gt;...middlewareN-&gt;route-&gt;response
+</code></pre>
+
+<hr>
+
+<h2>
+<a id="expressjs-middleware" class="anchor" href="#expressjs-middleware" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Express.js Middleware</h2>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">app</span>.<span class="pl-en">use</span>(<span class="pl-k">function</span>(<span class="pl-smi">request</span>, <span class="pl-smi">response</span>, <span class="pl-smi">next</span>) {
+  <span class="pl-c">// ...</span>
+  <span class="pl-en">next</span>()
+}, <span class="pl-k">function</span>(<span class="pl-smi">request</span>, <span class="pl-smi">response</span>, <span class="pl-smi">next</span>) {
+  <span class="pl-en">next</span>()
+}, <span class="pl-k">function</span>(<span class="pl-smi">request</span>, <span class="pl-smi">response</span>, <span class="pl-smi">next</span>) {
+  <span class="pl-en">next</span>()
+})</pre></div>
+
+<hr>
+
+<h1>
+<a id="problems" class="anchor" href="#problems" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Problems</h1>
+
+<ul>
+<li>Callbacks are still hard to manage even in modules!</li>
+<li>Callbacks fire just once</li>
+<li>Callbacks fire only at the end</li>
+<li>No way to remove a callback or add a new one "on the fly"</li>
+</ul>
+
+<hr>
+
+<h2>
+<a id="no-its-not-promises-" class="anchor" href="#no-its-not-promises-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>No it's not promises. <g-emoji alias="wink" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f609.png" ios-version="6.0">😉</g-emoji>
+</h2>
+
+<p>^Promises fire just once just as callbacks</p>
+
+<hr>
+
+<h1>
+<a id="example-1" class="anchor" href="#example-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example</h1>
+
+<ol>
+<li>Module Job is performing a task.</li>
+<li>In the main file, we import Job.</li>
+</ol>
+
+<p>How do we specify a callback (some future logic) on the Job's task completion?</p>
+
+<hr>
+
+<p>Maybe:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> job <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>./job.js<span class="pl-pds">'</span></span>)(callback)</pre></div>
+
+<hr>
+
+<p>What about multiple callbacks?</p>
+
+<p>Not very scalable <g-emoji alias="cry" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f622.png" ios-version="6.0">😢</g-emoji></p>
+
+<hr>
+
+<h1>
+<a id="solution-3" class="anchor" href="#solution-3" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Solution</h1>
+
+<p>Observer pattern with event emitters!</p>
+
+<hr>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// module.js</span>
+<span class="pl-k">var</span> util <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>util<span class="pl-pds">'</span></span>)
+<span class="pl-k">var</span> <span class="pl-en">Job</span> <span class="pl-k">=</span> <span class="pl-k">function</span> <span class="pl-en">Job</span>() {
+  <span class="pl-c">// ...</span>
+  <span class="pl-v">this</span>.<span class="pl-en">process</span> <span class="pl-k">=</span> <span class="pl-k">function</span>() {
+    <span class="pl-c">// ...</span>
+    <span class="pl-v">this</span>.<span class="pl-en">emit</span>(<span class="pl-s"><span class="pl-pds">'</span>done<span class="pl-pds">'</span></span>, { completedOn<span class="pl-k">:</span> <span class="pl-k">new</span> <span class="pl-en">Date</span>() })
+  }
+}
+
+<span class="pl-smi">util</span>.<span class="pl-en">inherits</span>(Job, <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>events<span class="pl-pds">'</span></span>).<span class="pl-smi">EventEmitter</span>)
+<span class="pl-c1">module</span>.<span class="pl-smi">exports</span> <span class="pl-k">=</span> Job</pre></div>
+
+<p>^ module</p>
+
+<hr>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// main.js</span>
+<span class="pl-k">var</span> Job <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>./module.js<span class="pl-pds">'</span></span>)
+<span class="pl-k">var</span> job <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Job</span>()
+
+<span class="pl-smi">job</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>done<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">details</span>){
+  <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>Job was completed at<span class="pl-pds">'</span></span>, <span class="pl-smi">details</span>.<span class="pl-smi">completedOn</span>)
+  <span class="pl-smi">job</span>.<span class="pl-en">removeAllListeners</span>()
+})
+
+<span class="pl-smi">job</span>.<span class="pl-en">process</span>()</pre></div>
+
+<p>^main</p>
+
+<hr>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">emitter</span>.<span class="pl-en">listeners</span>(eventName)
+<span class="pl-smi">emitter</span>.<span class="pl-en">on</span>(eventName, listener)
+<span class="pl-smi">emitter</span>.<span class="pl-en">once</span>(eventName, listener)
+<span class="pl-smi">emitter</span>.<span class="pl-en">removeListener</span>(eventName, listener)</pre></div>
+
+<hr>
+
+<h1>
+<a id="more-async" class="anchor" href="#more-async" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>More Async</h1>
+
+<ul>
+<li>
+<code>async</code> and <code>neo-async</code>
+</li>
+<li>
+<code>co</code> and <code>bluebird</code>
+</li>
+<li>Promises - not really helping much</li>
+<li>Generators - promising</li>
+<li>Async await - nice wrapper for promises</li>
+</ul>
+
+<hr>
+
+<h1>
+<a id="lets-leave-managing-async-for-another-talk" class="anchor" href="#lets-leave-managing-async-for-another-talk" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Let's leave managing async for another talk.</h1>
+
+<hr>
+
+<h2>
+<a id="dependency-injection" class="anchor" href="#dependency-injection" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dependency Injection</h2>
+
+<h2>
+<a id="express-middleware" class="anchor" href="#express-middleware" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Express Middleware</h2>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> express <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>express<span class="pl-pds">'</span></span>)  
+<span class="pl-k">var</span> app <span class="pl-k">=</span> <span class="pl-en">express</span>()  
+<span class="pl-k">var</span> session <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>express-session<span class="pl-pds">'</span></span>)
+
+<span class="pl-smi">app</span>.<span class="pl-en">use</span>(<span class="pl-en">session</span>({  
+  store<span class="pl-k">:</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>connect-session-knex<span class="pl-pds">'</span></span>)()
+}))</pre></div>
+
+<hr>
+
+<h1>
+<a id="hapi" class="anchor" href="#hapi" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Hapi</h1>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">server</span>.<span class="pl-en">views</span>({  
+  engines<span class="pl-k">:</span> {
+    html<span class="pl-k">:</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>handlebars<span class="pl-pds">'</span></span>)
+  },
+  relativeTo<span class="pl-k">:</span> <span class="pl-c1">__dirname</span>,
+  path<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>templates<span class="pl-pds">'</span></span>
+})</pre></div>
+
+<hr>
+
+<h2>
+<a id="express-routes" class="anchor" href="#express-routes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Express Routes</h2>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// server.js</span>
+<span class="pl-k">var</span> app <span class="pl-k">=</span> <span class="pl-en">express</span>()
+<span class="pl-c">//...</span>
+<span class="pl-smi">app</span>.<span class="pl-en">use</span>(<span class="pl-en">logger</span>(<span class="pl-s"><span class="pl-pds">'</span>dev<span class="pl-pds">'</span></span>))
+<span class="pl-c">//...</span>
+app <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>./routes<span class="pl-pds">'</span></span>)(app)
+<span class="pl-smi">app</span>.<span class="pl-en">listen</span>(<span class="pl-c1">3000</span>)</pre></div>
+
+<hr>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// routes/index.js</span>
+<span class="pl-c1">module</span>.<span class="pl-en">exports</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">app</span>) {
+  <span class="pl-smi">app</span>.<span class="pl-c1">get</span>(<span class="pl-s"><span class="pl-pds">'</span>/users<span class="pl-pds">'</span></span>, <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>./users.js<span class="pl-pds">'</span></span>).<span class="pl-smi">getUsers</span>)
+  <span class="pl-smi">app</span>.<span class="pl-en">post</span>(<span class="pl-s"><span class="pl-pds">'</span>/order<span class="pl-pds">'</span></span>, <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>./orders.js<span class="pl-pds">'</span></span>).<span class="pl-smi">addOrder</span>)
+  <span class="pl-c">//...</span>
+  <span class="pl-k">return</span> app
+}</pre></div>
+
+<hr>
+
+<h1>
+<a id="problem-9" class="anchor" href="#problem-9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Problem</h1>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">let</span> f <span class="pl-k">=</span> <span class="pl-k">?</span>
+<span class="pl-k">let</span> a <span class="pl-k">=</span> <span class="pl-en">f</span>(<span class="pl-s"><span class="pl-pds">'</span>Portland<span class="pl-pds">'</span></span>)
+<span class="pl-k">let</span> b <span class="pl-k">=</span> <span class="pl-en">f</span>(<span class="pl-s"><span class="pl-pds">'</span>Oakland<span class="pl-pds">'</span></span>)
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">a</span>(<span class="pl-s"><span class="pl-pds">'</span>Hi<span class="pl-pds">'</span></span>)) <span class="pl-c">// Hi Portland</span>
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">b</span>(<span class="pl-s"><span class="pl-pds">'</span>Hey<span class="pl-pds">'</span></span>)) <span class="pl-c">// Hey Oakland</span></pre></div>
+
+<hr>
+
+<h1>
+<a id="function-which-returns-a-function-monad" class="anchor" href="#function-which-returns-a-function-monad" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Function which returns a function (monad?)</h1>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// routes/index.js</span>
+<span class="pl-c1">module</span>.<span class="pl-en">exports</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">app</span>){
+  <span class="pl-k">return</span> <span class="pl-k">function</span>(<span class="pl-smi">options</span>, <span class="pl-smi">callback</span>) {
+    <span class="pl-smi">app</span>.<span class="pl-en">listen</span>(<span class="pl-smi">app</span>.<span class="pl-c1">get</span>(<span class="pl-s"><span class="pl-pds">'</span>port<span class="pl-pds">'</span></span>), options, callback)
+  }
+}</pre></div>
+
+<hr>
+
+<h1>
+<a id="useful-modules" class="anchor" href="#useful-modules" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Useful modules</h1>
+
+<ul>
+<li><a href="https://github.com/bnoguchi/hooks-js"><code>hooks</code></a></li>
+<li>
+<a href="https://www.npmjs.com/package/require-dir"><code>require-dir</code></a>, <a href="https://www.npmjs.com/package/require-directory"><code>require-directory</code></a> and <a href="https://www.npmjs.com/package/require-all"><code>require-all</code></a>
+</li>
+<li><a href="https://github.com/sindresorhus/opn"><code>opn</code></a></li>
+</ul>
+
+<p>^<a href="http://thenodeway.io">http://thenodeway.io</a> and <a href="https://darrenderidder.github.io/talks/ModulePatterns/#/14">https://darrenderidder.github.io/talks/ModulePatterns/#/14</a></p>
+
+<hr>
+
+<h1>
+<a id="there-are-more-patterns" class="anchor" href="#there-are-more-patterns" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>There are more patterns!</h1>
+
+<hr>
+
+<h1>
+<a id="node-patterns-by-mario-casciaro" class="anchor" href="#node-patterns-by-mario-casciaro" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Node Patterns by Mario Casciaro</h1>
+
+<p><img src="images/nodedesignpatterns.jpg" alt="inline"></p>
+
+<p><a href="http://amzn.to/21hXxTy">http://amzn.to/21hXxTy</a></p>
+
+<hr>
+
+<h2>
+<a id="30-second-summary" class="anchor" href="#30-second-summary" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>30-second Summary</h2>
+
+<ol>
+<li>Callbacks</li>
+<li>Observer</li>
+<li>Singleton</li>
+<li>Plugins</li>
+<li>Middleware</li>
+<li>Bunch of other stuff <g-emoji alias="boom" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a5.png" ios-version="6.0">💥</g-emoji>
+</li>
+</ol>
+
+<hr>
+
+<h2>
+<a id="the-end" class="anchor" href="#the-end" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>THE END</h2>
+
+<ol>
+<li>Start with what you need</li>
+<li>Try and see what works for you (func vs. proto)</li>
+<li>Don't over engineers following the latest fad — stick to fundamentals!</li>
+</ol>
+
+<p>Don't fight with JavaScript/Node, use it!</p>
+
+<hr>
+
+<h1>
+<a id="rate-this-talk-" class="anchor" href="#rate-this-talk-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Rate This Talk <g-emoji alias="+1" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44d.png" ios-version="6.0">👍</g-emoji>
+</h1>
+
+<p>Scale 1-10 (10 is highest)</p>
+
+<p>Anyone below 8?</p>
+
+<p>This is your chance ask a question to make it 10!
+(If you don't <g-emoji alias="hand" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/270b.png" ios-version="6.0">✋</g-emoji>, then you rate 8+, right?)</p>
+
+<hr>
+
+<h1>
+<a id="code-and-slides" class="anchor" href="#code-and-slides" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Code and Slides</h1>
+
+<p><a href="https://github.com/azat-co/node-patterns/issues">https://github.com/azat-co/node-patterns/issues</a></p>
+
+<p>Twitter: @azat_co
+Email: <a href="mailto:hi@azat.co">hi@azat.co</a></p>
+
+<p>Also, checkout NodeProgram.com</p>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
